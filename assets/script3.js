@@ -58,7 +58,7 @@ function getFiveDay(lat, lon) {
         // }
         // const data = data.list[i];
         var fDate = dayjs(data.list[i].dt * 1000).format("M/D/YYYY")
-        var card = $('<div>').addClass('card col-8 display-inline-block');
+        var card = $('<div>').addClass('card col-2');
         var cardBody = $('<div>').addClass('card-body')
         var cardTitle = $('<h3>').addClass('card-title').text(fDate);
         var imgIcon = $('<img>').addClass('card-title').attr('src', `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`);
