@@ -29,7 +29,6 @@ function getWeather(lat, lon, cityName) {
       var cityTitle = $('<h2>').addClass('card-title').text(cityName);
       var tDate = dayjs(data.dt * 1000).format('M/D/YYYY');
       console.log(tDate);
-      // var date = dayjs(tDate * 1000).format('M/D/YY')
       var imgIcon = $('<img>').addClass('card-title').attr('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
       var tempEl = $('<h6>').addClass('card-text').text('Temp: ' + data.main.temp + ' ºF');
       var windEl = $('<h6>').addClass('card-text').text('Wind: ' + data.wind.speed + ' MPH');
@@ -43,7 +42,7 @@ function getWeather(lat, lon, cityName) {
 
     })
 }
-
+// Five Day Forecast Container
 function getFiveDay(lat, lon) {
   var requestFive = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=d98bb48723a72ceb98f0fb8ddebd6462`;
   fetch(requestFive)
@@ -53,11 +52,8 @@ function getFiveDay(lat, lon) {
       for (var i = 0; i < data.list.length; i = i + 8) {
         // console.log(data.list[i])
         console.log(data.list[i].dt)
-        // for (var dt = 0; dt < data.list[i].length; dt = dt + 8) {
-        //   console.log(dt * 1000);
-        // }
         // const data = data.list[i];
-        var fDate = dayjs(data.list[i].dt * 1000).format("M/D/YYYY")
+        var fDate = dayjs(data.list[i].dt * 1000).format("M/D/YY");
         var card = $('<div>').addClass('card col-2');
         var cardBody = $('<div>').addClass('card-body')
         var cardTitle = $('<h3>').addClass('card-title').text(fDate);
@@ -70,18 +66,6 @@ function getFiveDay(lat, lon) {
       }
     })
 }
-
-//  var tDate = wData.list[arrID].dt
-// var date = dayjs(tDate * 1000).format('M/D/YY')
-// var cityTitle = $('<div>').addClass('card-title').text(cityName);
-// var imgIcon = $('<img>').addClass('card-title').attr('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-
-
-
-// cityTitle.append(imgIcon);
-// $('#today-container').append(card.append(cardBody.append(cityTitle, tempEl, windEl, humidityEl)));
-
-
 
 document.querySelector('.search-form').addEventListener('submit', function (event) {
   event.preventDefault();
